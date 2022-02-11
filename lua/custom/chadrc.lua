@@ -14,10 +14,11 @@ M.plugins = {
    status = {
       dashboard = true,
       colorizer = true,
+      snippets = true,
    },
    options = {
       lspconfig = {
-         setup_lsp = "custom.plugins.lspconfig",
+         setup_lspconf = "custom.plugins.lspconfig",
       },
       luasnip = {
          snippet_path = {
