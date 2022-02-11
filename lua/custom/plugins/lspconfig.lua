@@ -27,6 +27,7 @@ M.setup_lsp = function(attach, capabilities)
          client.resolved_capabilities.document_formatting = false
          map("n", "gd", [[ :lua vim.lsp.buf.definition()<CR>]])
          map("n", "K", [[ :lua vim.lsp.buf.hover()<CR>]])
+         map("n", "gR", [[ :lua vim.lsp.buf.rename()<CR>]])
       end,
    }
 
