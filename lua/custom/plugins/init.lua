@@ -13,5 +13,9 @@ return {
       requires = {
          { "nvim-lua/plenary.nvim" },
       },
+      config = function()
+         require("telescope").load_extension "harpoon"
+      end,
    },
+   { "github/copilot.vim" },
 }
