@@ -15,7 +15,7 @@ M.plugins = {
    status = {
       dashboard = true,
       colorizer = true,
-      snippets = false,
+      snippets = true,
    },
    options = {
       lspconfig = {

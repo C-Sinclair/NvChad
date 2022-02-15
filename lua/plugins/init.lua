@@ -119,36 +119,20 @@ local plugins = {
       config = override_req("better_escape", "plugins.configs.others", "better_escape"),
    },
 
-   -- load luasnips + cmp related in insert mode only
-
-   {
-      "rafamadriz/friendly-snippets",
-      module = "cmp_nvim_lsp",
-      disable = not (plugin_settings.status.cmp and plugin_settings.status.snippets),
-      event = "InsertEnter",
-   },
-
-   -- cmp by default loads after friendly snippets
-   -- if snippets are disabled -> cmp loads on insertEnter!
    {
       "hrsh7th/nvim-cmp",
       disable = not plugin_settings.status.cmp,
-      event = not plugin_settings.status.snippets and "InsertEnter",
-      after = plugin_settings.status.snippets and "friendly-snippets",
       config = override_req("nvim_cmp", "plugins.configs.cmp", "setup"),
    },
 
    {
       "L3MON4D3/LuaSnip",
-      disable = not (plugin_settings.status.cmp and plugin_settings.status.snippets),
-      wants = "friendly-snippets",
       after = "nvim-cmp",
       config = override_req("luasnip", "plugins.configs.others", "luasnip"),
    },
 
    {
       "saadparwaiz1/cmp_luasnip",
-      disable = not (plugin_settings.status.cmp and plugin_settings.status.snippets),
       after = plugin_settings.options.cmp.lazy_load and "LuaSnip",
    },
 
