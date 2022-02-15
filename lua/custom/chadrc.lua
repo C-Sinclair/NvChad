@@ -1,4 +1,5 @@
 local customPlugins = require "custom.plugins"
+local customConfigs = require "custom.plugins.configs"
 
 local M = {}
 
@@ -14,17 +15,20 @@ M.plugins = {
    status = {
       dashboard = true,
       colorizer = true,
-      snippets = true,
+      snippets = false,
    },
    options = {
       lspconfig = {
          setup_lspconf = "custom.plugins.lspconfig",
       },
-      luasnip = {
-         snippet_path = {
-            "./snippets",
-         },
-      },
+      luasnip = {},
+   },
+   default_plugin_config_replace = {
+      nvim_tree = customConfigs.nvimtree,
+   },
+   default_plugin_remove = {
+      "L3MON4D3/LuaSnip",
+      "rafamadriz/friendly-snippets",
    },
 }
 

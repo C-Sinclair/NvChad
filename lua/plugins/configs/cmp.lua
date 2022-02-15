@@ -13,12 +13,10 @@ local default = {
    documentation = {
       border = "single",
    },
-   snippet = (snippets_status and {
+   snippet = {
       expand = function(args)
          require("luasnip").lsp_expand(args.body)
       end,
-   }) or {
-      expand = function(_) end,
    },
    formatting = {
       format = function(entry, vim_item)
@@ -52,9 +50,18 @@ local default = {
          elseif snippets_status and require("luasnip").expand_or_jumpable() then
             require("luasnip").expand_or_jump()
          else
-            fallback()
+            -- account for Copilot/Cmp showdown over Tab key
+            local copilot_keys = vim.fn["copilot#Accept"]()
+            if copilot_keys ~= "" then
+               vim.api.nvim_feedkeys(copilot_keys, "i", true)
+            else
+               fallback()
+            end
          end
-      end, { "i", "s" }),
+      end, {
+         "i",
+         "s",
+      }),
       ["<S-Tab>"] = cmp.mapping(function(fallback)
          if cmp.visible() then
             cmp.select_prev_item()
@@ -63,13 +70,16 @@ local default = {
          else
             fallback()
          end
-      end, { "i", "s" }),
+      end, {
+         "i",
+         "s",
+      }),
    },
    sources = {
       { name = "nvim_lsp" },
+      { name = "nvim_lua" },
       { name = "luasnip" },
       { name = "buffer" },
-      { name = "nvim_lua" },
       { name = "path" },
    },
 }

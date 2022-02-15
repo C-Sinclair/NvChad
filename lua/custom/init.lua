@@ -7,3 +7,8 @@ map("n", "<C-b>", [[ :Telescope buffers<CR> ]])
 map("n", "<C-t><C-t>", [[ :Telescope resume<CR> ]])
 map("n", "<C-g>d", [[ :lua require('harpoon.mark').add_file()<CR> ]])
 map("n", "<C-g><C-g>", [[ :Telescope harpoon marks<CR> ]])
+
+-- copilot
+vim.g.copilot_no_tab_map = true
+vim.g.copilot_assume_mapped = true
+vim.g.copilot_tab_fallback = ""
